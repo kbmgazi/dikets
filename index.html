@@ -71,17 +71,74 @@
             transition: all 0.8s ease-in-out;
         }
 
-        .big-balloon {
-            font-size: 100px;
-            filter: drop-shadow(0 0 20px #ff4e50);
-            animation: floating 3s ease-in-out infinite;
-            margin-bottom: 20px;
+        /* --- REALISTIC BALLOON CSS --- */
+        .balloon-container {
+            width: 120px;
+            height: 250px; /* Extra height for the string */
+            position: relative;
+            animation: floating 4s ease-in-out infinite;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(255, 78, 80, 0.6));
+        }
+
+        .balloon-body {
+            width: 120px;
+            height: 145px;
+            background-color: #ff4e50;
+            /* Metallic foil gradient */
+            background-image: 
+                radial-gradient(circle at 70% 30%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 20%),
+                radial-gradient(circle at 30% 70%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 30%),
+                linear-gradient(135deg, #ff4e50 0%, #b21f21 100%);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Specification highlight (shining line) */
+        .balloon-body::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            width: 30px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: rotate(-30deg);
+            filter: blur(5px);
+        }
+
+        /* Balloon knot/bottom pinched part */
+        .balloon-knot {
+            width: 20px;
+            height: 15px;
+            background: #b21f21;
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        /* Balloon string */
+        .balloon-string {
+            width: 2px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         @keyframes floating {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-25px) scale(1.05); }
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-25px) rotate(2deg); }
         }
+        /* --- END REALISTIC BALLOON CSS --- */
 
         .input-card {
             background: rgba(255, 255, 255, 0.05);
@@ -329,6 +386,9 @@
             .input-card { width: 90%; }
             #text { padding: 25px; font-size: 1.1em; }
             .profile-img { width: 180px; height: 180px; }
+            .balloon-container { width: 80px; height: 180px; }
+            .balloon-body { width: 80px; height: 100px; }
+            .balloon-string { height: 70px; bottom: -70px; }
         }
     </style>
 </head>
@@ -341,7 +401,13 @@
     <div class="overlay"></div>
 
     <div id="interaction-screen">
-        <div class="big-balloon">🎈</div>
+        <div class="balloon-container">
+            <div class="balloon-body">
+                <div class="balloon-knot"></div>
+            </div>
+            <div class="balloon-string"></div>
+        </div>
+        
         <div class="input-card" id="card">
             <h3>Secret Access</h3>
             <p style="color: #ffb6c1; font-weight: 300;">Authorized Personnel Only</p>
@@ -428,10 +494,12 @@ Happy Birthday Mami. You are not just someone I cherish—you are the place my h
             const timeString = `${years} Years, ${days} Days, ${hours}h ${minutes}m ${seconds}s`;
             
             // Update Milestone Screen
-            document.getElementById("big-counter").innerHTML = `<b>${timeString}</b>`;
+            const bigCounter = document.getElementById("big-counter");
+            if (bigCounter) bigCounter.innerHTML = `<b>${timeString}</b>`;
             
             // Update Final Screen
-            document.getElementById("age-counter").innerHTML = `You have graced this world for:<br>${timeString}`;
+            const ageCounter = document.getElementById("age-counter");
+            if (ageCounter) ageCounter.innerHTML = `You have graced this world for:<br>${timeString}`;
         }
 
         /* ========================================
