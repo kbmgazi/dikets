@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Diketso ❤️</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Great+Vibes&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background: #000;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+        min-height: 100vh;
+    }
+
+    /* 🎥 Background Elements */
+    video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.65);
+        z-index: -1;
+    }
+
+    /* 🎈 Interaction Screen (Entry Page) */
+    #interaction-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, #2c001e 0%, #000 100%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.8s ease-in-out;
+    }
+
+    .big-balloon {
+        font-size: 100px;
+        filter: drop-shadow(0 0 20px #ff4e50);
+        animation: floating 3s ease-in-out infinite;
+        margin-bottom: 20px;
+    }
+
+    @keyframes floating {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-25px) scale(1.05); }
+    }
+
+    .input-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 40px 30px;
+        border-radius: 30px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 350px;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    }
+
+    /* Error Shake Animation */
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-15px); }
+        75% { transform: translateX(15px); }
+    }
+
+    .input-card h3 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+        background: linear-gradient(to right, #fff, #ffb6c1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(0,0,0,0.4);
+        color: white;
+        outline: none;
+        text-align: center;
+        font-size: 1.1em;
+        transition: 0.3s;
+    }
+
+    input[type="text"]:focus {
+        border-color: #ff4e50;
+        box-shadow: 0 0 15px rgba(255, 78, 80, 0.4);
+    }
+
+    .btn {
+        margin-top: 25px;
+        padding: 15px 30px;
+        font-size: 1.1em;
+        border: none;
+        border-radius: 15px;
+        background: linear-gradient(45deg, #ff4e50, #f9d423);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    /* 🎂 Main Celebration Content */
+    .container {
+        position: relative;
+        z-index: 10;
+        padding: 40px 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        display: none; 
+        overflow-y: auto;
+        max-height: 100vh;
+    }
+
+    h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3.5em;
+        color: #ffb6c1;
+        text-shadow: 0 0 20px rgba(255,182,193,0.8);
+    }
+
+    img {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        margin: 25px 0;
+        border: 5px solid #fff;
+        object-fit: cover;
+        box-shadow: 0 0 30px rgba(255,255,255,0.4);
+    }
+
+    #text {
+        font-size: 1.15em;
+        line-height: 1.8;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 30px;
+        border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: inline-block;
+        backdrop-filter: blur(10px);
+        margin-bottom: 50px;
+    }
+
+    /* 💖 Decorations */
+    .heart {
+        position: fixed;
+        color: #ff2e63;
+        z-index: 100;
+        pointer-events: none;
+        text-shadow: 0 0 15px rgba(255, 46, 99, 0.9);
+        animation: floatUp 6s linear forwards;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(110vh) rotate(0); opacity: 0; }
+        20% { opacity: 1; }
+        100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+    }
+
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop playsinline>
+    <source src="WhatsApp Video 2026-04-21 at 9.09.46 PM.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<div id="interaction-screen">
+    <div class="big-balloon">🎈</div>
+    <div class="input-card" id="card">
+        <h3>Access</h3>
+        <p style="color: #ffb6c1; font-weight: 300;">Please enter your first name</p>
+        <input type="text" id="firstName" placeholder="First Name..." autocomplete="off">
+        <button class="btn" onclick="unlockSurprise()">OPEN SURPRISE ✨</button>
+    </div>
+</div>
+
+<div class="container" id="main-content">
+    <p id="current-date" style="color: #ffb6c1; font-weight: bold; letter-spacing: 2px; margin-bottom: 20px;"></p>
+    <h1 id="dynamic-greeting">🎉 Happy Birthday 🎉</h1>
+    <h2 style="font-weight: 300; margin-top: 10px; letter-spacing: 3px;">Diketso Faith Mokgobi</h2>
+
+    <img src="WhatsApp Image 2026-04-21 at 7.01.52 PM.jpeg" alt="Diketso">
+
+    <div id="text"></div>
+</div>
+
+<audio id="music" loop>
+    <source src="uThando (ft Ovuyonke Dusse Wavy) (Official Visualiser).mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+<script>
+    // 📅 1. Display Current Date
+    document.getElementById("current-date").innerText = new Date().toLocaleDateString('en-US', { 
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+    });
+
+    // 💬 2. Typewriter Message
+    const message = `Always—let it be me who reaches for your hand when the world feels uncertain.
+
+Because in the right eyes, you are art—not something to be judged, but something to be felt, admired in silence, understood without explanation.
+
+You are my definition of personified perfection—not flawless, but real in a way that makes everything else fade.
+
+And today, I thank the Higher Power for choosing this moment in time to bring you into existence—because somehow, that decision led you to me.
+
+Happy Birthday Mami. You are not just someone I cherish—you are the place my heart keeps returning to when it finally learns stillness.`;
+
+    let index = 0;
+    function startTypewriter() {
+        const textElement = document.getElementById("text");
+        if (index < message.length) {
+            let char = message.charAt(index);
+            textElement.innerHTML += (char === '\n') ? "<br>" : char;
+            index++;
+            setTimeout(startTypewriter, 50);
+        }
+    }
+
+    // 🚀 3. Unlock Logic (Diketso Only)
+    function unlockSurprise() {
+        const nameInput = document.getElementById("firstName").value.trim();
+        const card = document.getElementById("card");
+
+        // SECURITY CHECK: Must be Diketso
+        if (nameInput.toLowerCase() !== "diketso") {
+            card.style.animation = "shake 0.5s ease";
+            setTimeout(() => card.style.animation = "", 500);
+            alert("Sorry! This surprise is exclusive");
+            return;
+        }
+
+        // Play Music
+        const audio = document.getElementById("music");
+        audio.play().catch(() => console.log("Audio play deferred."));
+
+        // Personalize Greeting
+        document.getElementById("dynamic-greeting").innerText = `🎉 Happy Birthday, ${nameInput}! 🎉`;
+
+        // Transition Page
+        const screen = document.getElementById("interaction-screen");
+        screen.style.opacity = "0";
+        screen.style.transform = "scale(1.5)";
+        
+        setTimeout(() => {
+            screen.style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+            
+            // Start Celebratory Effects
+            startTypewriter();
+            setInterval(createHeart, 250);
+            setInterval(createFirework, 1000);
+        }, 800);
+    }
+
+    // 💖 4. Floating Hearts
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        const icons = ["❤️", "💖", "💝", "✨", "🌸", "💕"];
+        heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 35 + "px"; // Large visible hearts
+        heart.style.animationDuration = (Math.random() * 2 + 4) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }
+
+    // 🎆 5. Fireworks Particles
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particles = [];
+
+    function createFirework() {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * (canvas.height / 2);
+        const color = `hsl(${Math.random() * 360}, 100%, 75%)`;
+        for (let i = 0; i < 40; i++) {
+            particles.push({
+                x, y, 
+                dx: (Math.random() - 0.5) * 8, 
+                dy: (Math.random() - 0.5) * 8, 
+                life: 80, 
+                color 
+            });
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p, i) => {
+            p.x += p.dx; p.y += p.dy; p.life--;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+            if (p.life <= 0) particles.splice(i, 1);
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.onresize = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    };
+</script>
+
+</body>
+</html>
