@@ -1,249 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Diketso ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Diketso ❤️</title>
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Great+Vibes&display=swap');
+    <style>
+        /* ========================================
+        1. FONTS & RESET
+        ========================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    body {
-        background: #000;
-        color: white;
-        text-align: center;
-        overflow: hidden;
-        min-height: 100vh;
-    }
+        body {
+            background: #000;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+            cursor: crosshair;
+        }
 
-    /* 🎥 Background Elements */
-    video {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: -2;
-    }
+        /* ========================================
+        2. BACKGROUND ELEMENTS
+        ========================================
+        */
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
 
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.65);
-        z-index: -1;
-    }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: -1;
+        }
 
-    /* 🎈 Interaction Screen (Entry Page) */
-    #interaction-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at center, #2c001e 0%, #000 100%);
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.8s ease-in-out;
-    }
+        /* ========================================
+        3. SCREEN 1: INTERACTION/ENTRY
+        ========================================
+        */
+        #interaction-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #2c001e 0%, #000 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.8s ease-in-out;
+        }
 
-    .big-balloon {
-        font-size: 100px;
-        filter: drop-shadow(0 0 20px #ff4e50);
-        animation: floating 3s ease-in-out infinite;
-        margin-bottom: 20px;
-    }
+        .big-balloon {
+            font-size: 100px;
+            filter: drop-shadow(0 0 20px #ff4e50);
+            animation: floating 3s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
 
-    @keyframes floating {
-        0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-25px) scale(1.05); }
-    }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-25px) scale(1.05); }
+        }
 
-    .input-card {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 40px 30px;
-        border-radius: 30px;
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        width: 350px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-    }
+        .input-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 350px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
 
-    /* Error Shake Animation */
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-15px); }
-        75% { transform: translateX(15px); }
-    }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-15px); }
+            75% { transform: translateX(15px); }
+        }
 
-    .input-card h3 {
-        font-size: 1.8em;
-        margin-bottom: 10px;
-        background: linear-gradient(to right, #fff, #ffb6c1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+        .input-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #ffb6c1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    input[type="text"] {
-        width: 100%;
-        padding: 15px;
-        margin-top: 20px;
-        border-radius: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        background: rgba(0,0,0,0.4);
-        color: white;
-        outline: none;
-        text-align: center;
-        font-size: 1.1em;
-        transition: 0.3s;
-    }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0,0,0,0.4);
+            color: white;
+            outline: none;
+            text-align: center;
+            font-size: 1.1em;
+            transition: 0.3s;
+        }
 
-    input[type="text"]:focus {
-        border-color: #ff4e50;
-        box-shadow: 0 0 15px rgba(255, 78, 80, 0.4);
-    }
+        input[type="text"]:focus {
+            border-color: #ff4e50;
+            box-shadow: 0 0 15px rgba(255, 78, 80, 0.4);
+        }
 
-    .btn {
-        margin-top: 25px;
-        padding: 15px 30px;
-        font-size: 1.1em;
-        border: none;
-        border-radius: 15px;
-        background: linear-gradient(45deg, #ff4e50, #f9d423);
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        width: 100%;
-        animation: pulse 2s infinite;
-    }
+        .btn {
+            margin-top: 25px;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ff4e50, #f9d423);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            animation: pulse 2s infinite;
+        }
 
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
-    /* 🎂 Main Celebration Content */
-    .container {
-        position: relative;
-        z-index: 10;
-        padding: 40px 20px;
-        max-width: 800px;
-        margin: 0 auto;
-        display: none; 
-        overflow-y: auto;
-        max-height: 100vh;
-    }
+        /* ========================================
+        4. SCREEN 2: BOLD MILESTONE 
+        ========================================
+        */
+        #milestone-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9998;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(30px);
+            transition: opacity 0.8s ease;
+        }
 
-    h1 {
-        font-family: 'Great Vibes', cursive;
-        font-size: 3.5em;
-        color: #ffb6c1;
-        text-shadow: 0 0 20px rgba(255,182,193,0.8);
-    }
+        .milestone-title {
+            font-size: 1.5em;
+            color: #ffb6c1;
+            letter-spacing: 5px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
 
-    img {
-        width: 220px;
-        height: 220px;
-        border-radius: 50%;
-        margin: 25px 0;
-        border: 5px solid #fff;
-        object-fit: cover;
-        box-shadow: 0 0 30px rgba(255,255,255,0.4);
-    }
+        #big-counter {
+            font-size: 4em;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 0 40px rgba(255, 78, 80, 0.9);
+            line-height: 1.2;
+            padding: 0 20px;
+        }
 
-    #text {
-        font-size: 1.15em;
-        line-height: 1.8;
-        background: rgba(0, 0, 0, 0.6);
-        padding: 30px;
-        border-radius: 25px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        display: inline-block;
-        backdrop-filter: blur(10px);
-        margin-bottom: 50px;
-    }
+        .proceed-btn {
+            margin-top: 50px;
+            padding: 18px 45px;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: transparent;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+        }
 
-    /* 💖 Decorations */
-    .heart {
-        position: fixed;
-        color: #ff2e63;
-        z-index: 100;
-        pointer-events: none;
-        text-shadow: 0 0 15px rgba(255, 46, 99, 0.9);
-        animation: floatUp 6s linear forwards;
-    }
+        .proceed-btn:hover {
+            background: white;
+            color: black;
+            box-shadow: 0 0 30px white;
+            transform: scale(1.05);
+        }
 
-    @keyframes floatUp {
-        0% { transform: translateY(110vh) rotate(0); opacity: 0; }
-        20% { opacity: 1; }
-        100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-    }
+        /* ========================================
+        5. SCREEN 3: MAIN CELEBRATION
+        ========================================
+        */
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 60px 20px;
+            max-width: 850px;
+            margin: 0 auto;
+            display: none; 
+            overflow-y: auto;
+            max-height: 100vh;
+        }
 
-    canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        pointer-events: none;
-    }
-</style>
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            color: #ffb6c1;
+            text-shadow: 0 0 20px rgba(255,182,193,0.8);
+            margin-bottom: 5px;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 30px 0;
+            border: 6px solid #fff;
+            object-fit: cover;
+            box-shadow: 0 0 40px rgba(255,255,255,0.3);
+        }
+
+        #age-counter {
+            font-size: 1em;
+            color: #ffb6c1;
+            margin: 25px 0;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            background: rgba(255, 182, 193, 0.1);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+
+        #text {
+            font-size: 1.2em;
+            line-height: 2;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            backdrop-filter: blur(15px);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .compliment-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-bottom: 100px;
+            transition: 0.4s;
+            font-weight: 600;
+        }
+
+        .compliment-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* ========================================
+        6. ANIMATIONS & DECOR
+        ========================================
+        */
+        .bloom {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            animation: bloomFade 3.5s ease-out forwards;
+            font-size: 32px;
+        }
+
+        @keyframes bloomFade {
+            0% { transform: scale(0.5) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2.5) translateY(-200px) rotate(45deg); opacity: 0; }
+        }
+
+        .heart {
+            position: fixed;
+            color: #ff2e63;
+            z-index: 100;
+            pointer-events: none;
+            text-shadow: 0 0 15px rgba(255, 46, 99, 0.9);
+            animation: floatUp 7s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ========================================
+        7. RESPONSIVE
+        ========================================
+        */
+        @media (max-width: 600px) {
+            #big-counter { font-size: 2.2em; }
+            h1 { font-size: 2.8em; }
+            .input-card { width: 90%; }
+            #text { padding: 25px; font-size: 1.1em; }
+            .profile-img { width: 180px; height: 180px; }
+        }
+    </style>
 </head>
 
-<body>
+<body onclick="spawnFlower(event)">
 
-<video autoplay muted loop playsinline>
-    <source src="WhatsApp Video 2026-04-21 at 9.09.46 PM.mp4" type="video/mp4">
-</video>
-<div class="overlay"></div>
+    <video autoplay muted loop playsinline id="bgVideo">
+        <source src="WhatsApp Video 2026-04-21 at 9.09.46 PM.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
 
-<div id="interaction-screen">
-    <div class="big-balloon">🎈</div>
-    <div class="input-card" id="card">
-        <h3>Access</h3>
-        <p style="color: #ffb6c1; font-weight: 300;">Please enter your first name</p>
-        <input type="text" id="firstName" placeholder="First Name..." autocomplete="off">
-        <button class="btn" onclick="unlockSurprise()">OPEN SURPRISE ✨</button>
+    <div id="interaction-screen">
+        <div class="big-balloon">🎈</div>
+        <div class="input-card" id="card">
+            <h3>Secret Access</h3>
+            <p style="color: #ffb6c1; font-weight: 300;">Authorized Personnel Only</p>
+            <input type="text" id="firstName" placeholder="What's your name?" autocomplete="off">
+            <button class="btn" onclick="unlockSurprise()">REVEAL SURPRISE ✨</button>
+        </div>
     </div>
-</div>
 
-<div class="container" id="main-content">
-    <p id="current-date" style="color: #ffb6c1; font-weight: bold; letter-spacing: 2px; margin-bottom: 20px;"></p>
-    <h1 id="dynamic-greeting">🎉 Happy Birthday 🎉</h1>
-    <h2 style="font-weight: 300; margin-top: 10px; letter-spacing: 3px;">Diketso Faith Mokgobi</h2>
+    <div id="milestone-screen">
+        <p class="milestone-title">You have graced this world for:</p>
+        <div id="big-counter"><b>-- Years, -- Days, --h --m --s</b></div>
+        <button class="proceed-btn" onclick="goToFinal()">Open My Message ❤️</button>
+    </div>
 
-    <img src="WhatsApp Image 2026-04-21 at 7.01.52 PM.jpeg" alt="Diketso">
+    <div class="container" id="main-content">
+        <p id="current-date" style="color: #ffb6c1; font-weight: bold; letter-spacing: 2px; margin-bottom: 20px;"></p>
+        
+        <h1 id="dynamic-greeting">🎉 Happy Birthday 🎉</h1>
+        <h2 style="font-weight: 400; margin-top: 10px; letter-spacing: 4px; color: rgba(255,255,255,0.8);">Diketso Faith Mokgobi</h2>
 
-    <div id="text"></div>
-</div>
+        <img src="WhatsApp Image 2026-04-21 at 7.01.52 PM.jpeg" alt="Diketso" class="profile-img">
 
-<audio id="music" loop>
-    <source src="uThando (ft Ovuyonke Dusse Wavy) (Official Visualiser).mp3" type="audio/mpeg">
-</audio>
+        <div id="age-counter">Tracking your light...</div>
 
-<canvas id="fireworks"></canvas>
+        <div id="text"></div>
 
-<script>
-    // 📅 1. Display Current Date
-    document.getElementById("current-date").innerText = new Date().toLocaleDateString('en-US', { 
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-    });
+        <br>
+        
+    </div>
 
-    // 💬 2. Typewriter Message
-    const message = `Always—let it be me who reaches for your hand when the world feels uncertain.
+    <audio id="music" loop>
+        <source src="uThando (ft Ovuyonke Dusse Wavy) (Official Visualiser).mp3" type="audio/mpeg">
+    </audio>
+
+    <canvas id="fireworks"></canvas>
+
+    <script>
+        /* ========================================
+        DATA & CONFIGURATION
+        ========================================
+        */
+        const birthDate = new Date("2006-04-22T00:00:00");
+        const message = `Always—let it be me who reaches for your hand when the world feels uncertain.
 
 Because in the right eyes, you are art—not something to be judged, but something to be felt, admired in silence, understood without explanation.
 
@@ -253,107 +394,199 @@ And today, I thank the Higher Power for choosing this moment in time to bring yo
 
 Happy Birthday Mami. You are not just someone I cherish—you are the place my heart keeps returning to when it finally learns stillness.`;
 
-    let index = 0;
-    function startTypewriter() {
-        const textElement = document.getElementById("text");
-        if (index < message.length) {
-            let char = message.charAt(index);
-            textElement.innerHTML += (char === '\n') ? "<br>" : char;
-            index++;
-            setTimeout(startTypewriter, 50);
-        }
-    }
+        const compliments = [
+            "Your laugh is my favorite sound in the world.",
+            "The way you see the world is so beautiful.",
+            "You make every ordinary moment feel like a dream.",
+            "You are my safest, most favorite place.",
+            "Your strength and kindness inspire me every day.",
+            "You are absolute perfection in my eyes.",
+            "Just thinking about you makes me smile.",
+            "You have a heart of gold, Diketso.",
+            "The world is better because you are in it."
+        ];
 
-    // 🚀 3. Unlock Logic (Diketso Only)
-    function unlockSurprise() {
-        const nameInput = document.getElementById("firstName").value.trim();
-        const card = document.getElementById("card");
-
-        // SECURITY CHECK: Must be Diketso
-        if (nameInput.toLowerCase() !== "diketso") {
-            card.style.animation = "shake 0.5s ease";
-            setTimeout(() => card.style.animation = "", 500);
-            alert("Sorry! This surprise is exclusive");
-            return;
+        /* ========================================
+        TIME & DATE FUNCTIONS
+        ========================================
+        */
+        function initDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("current-date").innerText = new Date().toLocaleDateString('en-US', options);
         }
 
-        // Play Music
-        const audio = document.getElementById("music");
-        audio.play().catch(() => console.log("Audio play deferred."));
-
-        // Personalize Greeting
-        document.getElementById("dynamic-greeting").innerText = `🎉 Happy Birthday, ${nameInput}! 🎉`;
-
-        // Transition Page
-        const screen = document.getElementById("interaction-screen");
-        screen.style.opacity = "0";
-        screen.style.transform = "scale(1.5)";
-        
-        setTimeout(() => {
-            screen.style.display = "none";
-            document.getElementById("main-content").style.display = "block";
+        function updateCounters() {
+            const now = new Date();
+            const diff = now - birthDate;
             
-            // Start Celebratory Effects
-            startTypewriter();
-            setInterval(createHeart, 250);
-            setInterval(createFirework, 1000);
-        }, 800);
-    }
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const days = Math.floor((diff / (1000 * 60 * 60 * 24)) % 365.25);
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
 
-    // 💖 4. Floating Hearts
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        const icons = ["❤️", "💖", "💝", "✨", "🌸", "💕"];
-        heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 20 + 35 + "px"; // Large visible hearts
-        heart.style.animationDuration = (Math.random() * 2 + 4) + "s";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-    }
-
-    // 🎆 5. Fireworks Particles
-    const canvas = document.getElementById("fireworks");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    let particles = [];
-
-    function createFirework() {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * (canvas.height / 2);
-        const color = `hsl(${Math.random() * 360}, 100%, 75%)`;
-        for (let i = 0; i < 40; i++) {
-            particles.push({
-                x, y, 
-                dx: (Math.random() - 0.5) * 8, 
-                dy: (Math.random() - 0.5) * 8, 
-                life: 80, 
-                color 
-            });
+            const timeString = `${years} Years, ${days} Days, ${hours}h ${minutes}m ${seconds}s`;
+            
+            // Update Milestone Screen
+            document.getElementById("big-counter").innerHTML = `<b>${timeString}</b>`;
+            
+            // Update Final Screen
+            document.getElementById("age-counter").innerHTML = `You have graced this world for:<br>${timeString}`;
         }
-    }
 
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach((p, i) => {
-            p.x += p.dx; p.y += p.dy; p.life--;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
-            ctx.fill();
-            if (p.life <= 0) particles.splice(i, 1);
-        });
-        requestAnimationFrame(animate);
-    }
-    animate();
+        /* ========================================
+        TYPEWRITER EFFECT
+        ========================================
+        */
+        let charIndex = 0;
+        function startTypewriter() {
+            const textElement = document.getElementById("text");
+            if (charIndex < message.length) {
+                let char = message.charAt(charIndex);
+                textElement.innerHTML += (char === '\n') ? "<br>" : char;
+                charIndex++;
+                setTimeout(startTypewriter, 50);
+            }
+        }
 
-    window.onresize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    };
-</script>
+        /* ========================================
+        TRANSITION LOGIC
+        ========================================
+        */
+        function unlockSurprise() {
+            const nameInput = document.getElementById("firstName").value.trim();
+            const card = document.getElementById("card");
+
+            if (nameInput.toLowerCase() !== "diketso") {
+                card.style.animation = "shake 0.5s ease";
+                setTimeout(() => card.style.animation = "", 500);
+                alert("Access Denied. This surprise is exclusive to Diketso. ❤️");
+                return;
+            }
+
+            // Start audio and background tracking
+            const audio = document.getElementById("music");
+            audio.play().catch(() => console.log("User gesture required for audio."));
+            
+            document.getElementById("dynamic-greeting").innerText = `🎉 Happy Birthday, ${nameInput}! 🎉`;
+
+            // Fade out Screen 1
+            const screen1 = document.getElementById("interaction-screen");
+            screen1.style.opacity = "0";
+            screen1.style.transform = "scale(1.1)";
+            
+            setTimeout(() => {
+                screen1.style.display = "none";
+                document.getElementById("milestone-screen").style.display = "flex";
+                setInterval(updateCounters, 1000); // Start the timer
+            }, 800);
+        }
+
+        function goToFinal() {
+            const screen2 = document.getElementById("milestone-screen");
+            screen2.style.opacity = "0";
+
+            setTimeout(() => {
+                screen2.style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+                
+                // Trigger final reveal elements
+                startTypewriter();
+                setInterval(createHeart, 250);
+                setInterval(createFirework, 1200);
+            }, 800);
+        }
+
+        /* ========================================
+        INTERACTIVE EFFECTS
+        ========================================
+        */
+        function spawnFlower(e) {
+            const flowers = ["🌸", "🌹", "🌷", "🌺", "🌻", "✨", "💕"];
+            const f = document.createElement("div");
+            f.className = "bloom";
+            f.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            f.style.left = e.clientX + "px";
+            f.style.top = e.clientY + "px";
+            document.body.appendChild(f);
+            setTimeout(() => f.remove(), 3500);
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            const icons = ["❤️", "💖", "💝", "✨", "🌸", "💕", "🎀"];
+            heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 35 + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }
+
+        function showCompliment() {
+            const randomMsg = compliments[Math.floor(Math.random() * compliments.length)];
+            alert(randomMsg);
+        }
+
+        /* ========================================
+        FIREWORKS ENGINE
+        ========================================
+        */
+        const canvas = document.getElementById("fireworks");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function createFirework() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * (canvas.height / 2);
+            const color = `hsl(${Math.random() * 360}, 100%, 75%)`;
+            
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x, y,
+                    dx: (Math.random() - 0.5) * 10,
+                    dy: (Math.random() - 0.5) * 10,
+                    life: 100,
+                    color
+                });
+            }
+        }
+
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.dx;
+                p.y += p.dy;
+                p.dy += 0.05; // gravity
+                p.life--;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life / 100;
+                ctx.fill();
+
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateFireworks);
+        }
+
+        // Initialize components
+        initDate();
+        animateFireworks();
+    </script>
 
 </body>
 </html>
